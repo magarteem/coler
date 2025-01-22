@@ -1,0 +1,18 @@
+$background: #fff;
+$foreground: #252b1e;
+$pink-light: #f8f8f8;
+$pink: #c38cd9;
+
+:root {
+  --background: #{$background};
+  --foreground: #{$foreground};
+  --pink: #{$pink};
+  --pinkLight: #{$pink-light};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}

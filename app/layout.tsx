@@ -1,25 +1,15 @@
+import "./globals.scss";
 import type { Metadata } from "next";
 import { Roboto, Manrope } from "next/font/google";
-import "./globals.css";
-
-//const geistSans = Geist({
-//  variable: "--font-geist-sans",
-//  subsets: ["latin"],
-//});
-
-//const geistMono = Geist_Mono({
-//  variable: "--font-geist-mono",
-//  subsets: ["latin"],
-//});
 
 const geistRoboto = Roboto({
   weight: ["400", "700"],
-  variable: "--font-geist-mono",
+  variable: "--font-roboto",
   subsets: ["latin"],
 });
 const geistManrope = Manrope({
   weight: ["500", "600"],
-  variable: "--font-geist-mono",
+  variable: "--font-manrope",
   subsets: ["latin"],
 });
 
