@@ -1,0 +1,17 @@
+.forDesktop {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(262px, 1fr));
+  gap: 16px;
+
+  @media (max-width: $sm) {
+    display: none;
+  }
+}
+
+.forMobile {
+  display: none;
+
+  @media (max-width: $sm) {
+    display: block;
+  }
+}

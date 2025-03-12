@@ -1,0 +1,53 @@
+.inputClass:not(:placeholder-shown) {
+  &:focus {
+    color: var(--black);
+  }
+}
+
+.container {
+  .inputClass {
+    position: relative;
+    color: var(--black);
+    background: var(--white);
+    height: 44px;
+    padding: 0 35px 0 16px;
+    transition: all 0.2s;
+    border: 0.5px solid var(--grey);
+    border-radius: 16px;
+    font-family: var(--font-roboto);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    width: 100%;
+
+    &:focus {
+      border-color: var(--black);
+    }
+
+    &:hover {
+      border: 0.5px solid var(--black);
+    }
+  }
+
+  .inputClass:not(:placeholder-shown) {
+    border: 0.5px solid var(--grey);
+  }
+
+  .inputClass::placeholder {
+    font-family: var(--font-roboto);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+  }
+}
+
+.errorText {
+  .error {
+    margin-top: 12px;
+    color: var(--error);
+    font-family: var(--font-roboto);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+  }
+}

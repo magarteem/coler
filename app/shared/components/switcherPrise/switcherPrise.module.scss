@@ -1,0 +1,59 @@
+._textStyle {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.plan {
+  cursor: pointer;
+  display: flex;
+  border-radius: 99px;
+  background: var(--greyLight);
+  width: max-content;
+
+  * {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mount {
+    @extend ._textStyle;
+    border-radius: 99px;
+    padding: 6px 16px;
+  }
+
+  .discount {
+    display: flex;
+    border-radius: 99px;
+    background-color: var(--black);
+    gap: 4px;
+    padding: 0 6px 0 16px;
+
+    .year {
+      @extend ._textStyle;
+      color: var(--white);
+    }
+
+    .sum {
+      background-color: var(--white);
+      color: var(--black);
+      font-size: 10px;
+      font-weight: 500;
+      line-height: 12px;
+      border-radius: 99px;
+      padding: 4px 8px;
+    }
+  }
+}
+
+.stateSwitchOn .mount {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.stateSwitchOn .discount,
+.stateSwitchOn .year {
+  background-color: inherit !important;
+  color: var(--black) !important;
+}

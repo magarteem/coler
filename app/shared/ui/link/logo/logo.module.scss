@@ -1,0 +1,64 @@
+.logo {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+
+  @media (max-width: $md) {
+    padding: 0;
+  }
+
+  //.icon {
+  //  @media (max-width: $md) {
+  //    width: 24px;
+  //    height: 24px;
+  //  }
+  //}
+
+  .name {
+    font-family: var(--font-roboto);
+
+    @media (max-width: $md) {
+      //font-size: 20px;
+      //font-weight: 500;
+      //line-height: 24px;
+    }
+  }
+}
+
+.sm {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.md {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+
+  .icon {
+    width: 30px;
+    height: 30px;
+
+    @media (max-width: $md) {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+.lg {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 32px;
+
+  .icon {
+    width: 32px;
+    height: 32px;
+  }
+}

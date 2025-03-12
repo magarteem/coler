@@ -1,0 +1,64 @@
+.sideBar {
+  background-color: var(--greyLight);
+  border-right: 0.5px solid var(--main);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  left: 0;
+  overflow: auto;
+
+  @media (max-width: $md) {
+    display: none;
+  }
+
+  .customStyles {
+    padding: 32px 0 24px 32px;
+  }
+
+  .navigationBlock {
+    display: flex;
+    flex: 0 1 100%;
+    flex-direction: column;
+    border-bottom: 0.5px solid var(--main);
+    border-top: 0.5px solid var(--main);
+    justify-content: space-between;
+
+    .btnWrap {
+      //margin: 24px auto;
+      align-self: center;
+      margin-bottom: 24px;
+      width: 100%;
+      padding: 0 24px;
+    }
+  }
+
+  .terms {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    padding: 24px 32px 32px;
+
+    .privacy {
+      display: flex;
+      flex-direction: column;
+      row-gap: 12px;
+
+      p {
+        color: var(--black);
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 16px;
+      }
+    }
+
+    .rights {
+      color: var(--grey);
+      font-family: var(--font-roboto);
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 12px;
+    }
+  }
+}

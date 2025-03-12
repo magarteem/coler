@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  position: relative;
+
+  .titleInput {
+    color: var(--black);
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 12px;
+    margin-bottom: 8px;
+  }
+
+  textarea {
+    position: relative;
+    color: var(--black);
+    background: var(--white);
+    height: 40px;
+    padding: 12px 16px;
+    transition: all 0.2s;
+    border: 0.5px solid var(--grey);
+    border-radius: 16px;
+    font-family: var(--font-roboto);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    height: 104px;
+    resize: none;
+
+    &:focus {
+      border-color: var(--black);
+    }
+
+    &:hover {
+      border: 0.5px solid var(--black);
+    }
+  }
+
+  textarea:not(:placeholder-shown) {
+    border: 0.5px solid var(--grey);
+  }
+
+  textarea::placeholder {
+    font-family: var(--font-roboto);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+  }
+}

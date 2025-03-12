@@ -1,0 +1,73 @@
+.customStyles {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 392px;
+
+  @media (max-width: $md) {
+    width: 100%;
+  }
+}
+
+.fromLogin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  .customMargin {
+    width: 100%;
+    margin: 48px 0 16px;
+  }
+
+  .info {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    color: var(--info) !important;
+  }
+
+  .privacy {
+    text-align: center;
+    color: var(--grey);
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 12px;
+
+    .linkText {
+      color: var(--info);
+      padding: 0 4px;
+    }
+    .linkText.block {
+      display: block;
+      margin-top: 4px;
+    }
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    padding: 32px 0 24px 32px;
+
+    @media (max-width: $md) {
+      padding: 0;
+    }
+
+    .name {
+      font-family: var(--font-roboto);
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 32px;
+    }
+  }
+
+  .customText {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    color: var(--info) !important;
+  }
+}

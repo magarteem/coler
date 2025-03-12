@@ -1,0 +1,10 @@
+.blockColorLayout {
+  display: inline-flex;
+  border-radius: 24px;
+  background-color: var(--greyLight);
+  padding: 24px;
+
+  @media (max-width: $md) {
+    display: flex;
+  }
+}

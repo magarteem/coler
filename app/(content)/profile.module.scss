@@ -1,0 +1,46 @@
+.profileInfo {
+  display: flex;
+  column-gap: 24px;
+  .circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background-color: var(--main);
+    border-radius: 1000px;
+  }
+
+  .contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 12px;
+
+    .phone {
+      color: var(--grey);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 16px;
+    }
+
+    .phoneNumber {
+      color: var(--black);
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 20px;
+    }
+  }
+}
+
+.textCreateSub {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  color: var(--grey);
+  margin: auto;
+
+  .createSubscription {
+    color: var(--main);
+  }
+}

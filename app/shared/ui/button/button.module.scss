@@ -1,0 +1,103 @@
+.button {
+  font-weight: 600;
+  line-height: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  padding: 8px 22px;
+  border-radius: 100px;
+  gap: 8px;
+  font-family: inherit;
+  border: 0;
+  font-size: 16px;
+  height: 44px;
+
+  &.sm {
+    //font-size: 12px;
+    //height: 32px;
+  }
+
+  &.md {
+    height: 36px;
+    padding: 8px 16px;
+  }
+
+  &.lg {
+    //height: 36px;
+  }
+
+  &.full_width_btn {
+    width: 100%;
+    height: 36px;
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+    padding-left: 4px;
+  }
+  .iconLeft {
+    display: flex;
+    align-items: center;
+    padding-right: 4px;
+  }
+
+  &:disabled .icon {
+    path {
+      //fill: $white_500;
+    }
+  }
+}
+
+/* Цвета кнопки */
+.primary {
+  background-color: var(--black);
+  color: var(--white);
+
+  &:hover:not(:disabled) {
+    background-color: #3e2d43;
+  }
+  &:disabled {
+    opacity: 0.2;
+  }
+}
+
+.secondary {
+  //background-color: $black_1000;
+  //color: $white;
+
+  &:hover:not(:disabled) {
+    //background-color: $black_800;
+  }
+  &:disabled {
+    //color: $white_500;
+    //background-color: $black_800;
+  }
+}
+
+.outline {
+  background-color: inherit;
+  color: var(--black);
+  outline: 1px solid var(--black);
+
+  &:hover:not(:disabled) {
+    background: var(--mainHover);
+  }
+  &:disabled {
+    opacity: 0.2;
+  }
+}
+
+.ghost {
+  //color: $white;
+  background-color: inherit;
+
+  &:hover:not(:disabled) {
+    //background-color: $white_100;
+  }
+  &:disabled {
+    //color: $white_500;
+  }
+}

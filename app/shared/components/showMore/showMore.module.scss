@@ -1,0 +1,19 @@
+.iconArrow {
+  transition: all 0.3s;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+.customStyleBtn {
+  height: 28px !important;
+  white-space: nowrap;
+  color: var(--info);
+  font-size: 14px !important;
+  font-weight: 600;
+  line-height: 16px;
+  padding-left: 0 !important;
+  justify-content: flex-start;
+  margin-left: 24px;
+}

@@ -1,0 +1,16 @@
+.tagStatusSubscription {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  border-radius: 8px;
+  width: max-content;
+  padding: 4px 8px;
+  color: var(--white);
+}
+
+.active {
+  background-color: (var(--main));
+}
+.noActive {
+  background-color: (var);
+}

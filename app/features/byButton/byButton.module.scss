@@ -1,0 +1,17 @@
+.btnWrap {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  height: 44px;
+  width: 100%;
+  flex: 1 0 auto;
+
+  .btnCard {
+    align-self: flex-end;
+    width: calc(100% - 80px);
+    height: 44px;
+  }
+}

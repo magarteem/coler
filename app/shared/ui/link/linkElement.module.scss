@@ -1,0 +1,23 @@
+.link {
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--black);
+}
+
+.active {
+  background-color: var(--mainHover);
+  border-radius: 12px;
+}
+
+//.info {
+//  font-size: 16px;
+//  font-weight: 600;
+//  line-height: 20px;
+//  color: var(--info) !important;
+//}

@@ -1,0 +1,77 @@
+.btnNavigation {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+
+  .arrowNext {
+    transform: rotate(180deg);
+  }
+
+  .numberSlideWrap {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    .numberSlides {
+      transition: width 0.3s;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background-color: var(--greyLight);
+    }
+  }
+
+  .numberSlides.active {
+    width: 20px;
+    background-color: var(--grey);
+  }
+
+  .btn {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    background-color: var(--black);
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:disabled {
+      background: var(--greyLight);
+
+      svg {
+        path {
+          fill: var(--grey);
+        }
+      }
+    }
+  }
+
+  .btnPrev,
+  .btnNext {
+    @extend .btn;
+  }
+}
+
+.blockEventsSwiper {
+  width: 100%;
+  overflow: hidden;
+  gap: 12px;
+  padding-right: 24px !important;
+
+  .customContainer {
+    flex: 1 0 262px;
+
+    @media (max-width: $md) {
+      flex: 1 0 340px;
+    }
+  }
+
+  .loaderContainer {
+    @extend .customContainer;
+    display: flex;
+    gap: 12px;
+  }
+}
