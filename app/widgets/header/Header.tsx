@@ -1,15 +1,15 @@
 "use client";
 
-import { Button } from "@/app/shared/ui/button/Button";
 import styles from "./header.module.scss";
 import { usePathname } from "next/navigation";
 import { RouteNames } from "@/app/shared/types/RouteNames";
 import { Logo } from "@/app/shared/ui/link/logo/Logo";
-import { useModal } from "@/app/core/provider/ModalProvider";
-import { LogOut, MobileMenu, PromoCodeIcon } from "@/public/images";
+import { MobileMenu } from "@/public/images";
 import { SideBarMobile } from "../sideBar/SideBarMobile";
 import { useState } from "react";
-import { signOut, useSession } from "next-auth/react";
+import { MyPlanType } from "@/app/shared/types/myPlanType";
+import { SendPromoCodeBtn } from "@/app/features/sendPromoCodeBtn/SendPromoCodeBtn";
+import { LogOutBtn } from "@/app/features/logOutBtn/LogOutBtn";
 
 const ROUTE_TITLES: Record<string, string> = {
   [RouteNames.HOME]: "Профайл",
@@ -17,24 +17,27 @@ const ROUTE_TITLES: Record<string, string> = {
   [RouteNames.TARIFFS]: "Тарифи",
 };
 
-export const Header = () => {
-  //const session = useSession();
-  //
-  //console.log("session", session);
-  const { openModal } = useModal();
+interface Props {
+  myPlan: MyPlanType[] | undefined;
+}
+export const Header = ({ myPlan }: Props) => {
   const pathName = usePathname();
   const [mobileSideBar, setMobileSideBar] = useState(false);
 
-  const checkPage = pathName === RouteNames.TARIFFS;
-
-  const setPromoCode = () => {
-    openModal("promoCode", {
-      modalTitle: "Промокод",
-      iconModalTitle: <PromoCodeIcon />,
-    });
-  };
+  const checkPage =
+    pathName === RouteNames.TARIFFS || pathName === RouteNames.SUBSCRIPTION;
 
   const showSideBar = () => setMobileSideBar((prev) => !prev);
+
+  const btnByPlan =
+    pathName === RouteNames.TARIFFS ||
+    (pathName === RouteNames.SUBSCRIPTION && myPlan && myPlan.length === 0);
+
+  const textBtn =
+    pathName === RouteNames.TARIFFS
+      ? "Використати промокод"
+      : "Купити підписку";
+
   return (
     <>
       <header className={styles.header}>
@@ -53,20 +56,8 @@ export const Header = () => {
         <div className={styles.headerForDesktop}>
           <h1 className={styles.thisPage}>{ROUTE_TITLES[pathName]}</h1>
 
-          {checkPage ? (
-            <Button size="md" variant="primary" onClick={setPromoCode}>
-              Використати промокод
-            </Button>
-          ) : (
-            <Button
-              icon={<LogOut />}
-              size="md"
-              variant="primary"
-              onClick={() => signOut()}
-            >
-              Вийти
-            </Button>
-          )}
+          {!checkPage && <LogOutBtn />}
+          {btnByPlan && <SendPromoCodeBtn myPlan={myPlan} text={textBtn} />}
         </div>
       </header>
 
@@ -74,3 +65,32 @@ export const Header = () => {
     </>
   );
 };
+
+//const setPromoCode = () => {
+//  openModal("promoCode", {
+//    modalTitle: "Промокод",
+//    iconModalTitle: <PromoCodeIcon />,
+//  });
+//};
+
+//{btnByPlan && (
+//  <SendPromoCodeBtn myPlan={myPlan} text={textBtn} />
+//  //<Button
+//  //  disabled={myPlan && myPlan.length > 0}
+//  //  size="md"
+//  //  variant="primary"
+//  //  onClick={setPromoCode}
+//  //>
+//  //  Купити підписку
+//  //</Button>
+//)}
+//{pathName === RouteNames.TARIFFS && (
+//  <Button
+//    disabled={myPlan && myPlan.length > 0}
+//    size="md"
+//    variant="primary"
+//    onClick={setPromoCode}
+//  >
+//    Використати промокод
+//  </Button>
+//)}

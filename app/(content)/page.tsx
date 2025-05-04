@@ -1,22 +1,14 @@
-import Link from "next/link";
 import { BlockColorLayout } from "../shared/layouts/blockColorLayout/BlockColorLayout";
 import styles from "./profile.module.scss";
 import { PageSectionsLayout } from "../shared/layouts/pageSectionsLayout/PageSectionsLayout";
 import { Camera } from "@/public/images";
+import { getServerSession, Session } from "next-auth";
+import { authOptions } from "../api/auth/authOptions";
+import { formatUaPhone } from "../shared/helpers/formatUaPhone";
 
-const auth = true;
+export default async function Profile() {
+  const session: Session | null = await getServerSession(authOptions);
 
-export default function Profile() {
-  if (!auth) {
-    return (
-      <p className={styles.textCreateSub}>
-        Активної підписки немає. Щоб придбати підписку{" "}
-        <Link href="#" className={styles.createSubscription}>
-          натисніть тут
-        </Link>
-      </p>
-    );
-  }
   return (
     <PageSectionsLayout>
       <BlockColorLayout>
@@ -26,7 +18,10 @@ export default function Profile() {
           </div>
           <div className={styles.contact}>
             <p className={styles.phone}>Номер телефону</p>
-            <p className={styles.phoneNumber}>+38 (050) 987-65-43</p>
+            <p className={styles.phoneNumber}>
+              {/*//@ts-ignore*/}
+              {formatUaPhone(`${session?.phone}`)}
+            </p>
           </div>
         </div>
       </BlockColorLayout>

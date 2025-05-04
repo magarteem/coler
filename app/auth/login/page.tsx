@@ -13,13 +13,28 @@ import { useRouter } from "next/navigation";
 import { TextInputField } from "@/app/shared/components/formFields/TextInputField";
 import { Button } from "@/app/shared/ui/button/Button";
 import { authLogin } from "@/app/shared/api/authLogin";
+import { generatePattern, unformat } from "@react-input/mask";
 
-const createDirectoryZod = z.object({
-  phone: z.string().length(12, "Invalid phone number"),
-  codeVerify: z.string().max(4, "max char").optional(),
+const options = {
+  mask: "+380 (00) 000 00 00",
+  replacement: { 0: /\d/ },
+};
+
+const schemePhoneZod = z.object({
+  phone: z.string().refine(
+    (val) => {
+      const pattern = generatePattern("full-inexact", options);
+      const isValid = RegExp(pattern).test(val);
+      return isValid;
+    },
+    {
+      message: "Invalid phone number",
+    }
+  ),
+  codeVerify: z.string().max(20, "max char").optional(),
 });
 
-export type ValidationSchema = z.infer<typeof createDirectoryZod>;
+export type ValidationSchema = z.infer<typeof schemePhoneZod>;
 
 const noes1 =
   "Введіть номер телефону, на який буде відправлено код для відновлення";
@@ -33,15 +48,16 @@ export default function Login() {
       phone: "",
       codeVerify: "",
     },
-    resolver: zodResolver(createDirectoryZod),
+    resolver: zodResolver(schemePhoneZod),
   });
 
   const onSubmit = async (dataForm: ValidationSchema) => {
     try {
       if (!accessToken) {
         //LOGIN
+        const unformatMask = "380" + unformat(dataForm.phone, options);
         const isLogin = await authLogin("/auth/register", {
-          body: JSON.stringify({ phone: dataForm.phone }),
+          body: JSON.stringify({ phone: unformatMask }),
         });
 
         if (isLogin.error) {
@@ -75,7 +91,6 @@ export default function Login() {
     }
   };
 
-  console.log("watch", form.watch("phone"));
   return (
     <>
       <GoBack />

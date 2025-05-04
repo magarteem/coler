@@ -1,5 +1,5 @@
 import React from "react";
-import { Controller } from "react-hook-form";
+import { Controller, FieldError } from "react-hook-form";
 import { InputField } from "../../ui/input/InputField";
 
 interface PhoneInputProps {
@@ -21,7 +21,7 @@ export const TextInputField = ({
         return (
           <InputField
             placeholder={placeholder}
-            errorText={errors[name]?.message}
+            errorText={(errors[name] as FieldError)?.message}
             {...field}
           />
         );

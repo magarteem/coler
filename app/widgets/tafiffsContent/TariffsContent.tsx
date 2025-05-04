@@ -6,16 +6,22 @@ import { TariffCardLayout } from "@/app/shared/layouts/tariffCardLayout/TariffCa
 import { TariffGallery } from "@/app/entities/tariffGallery/TariffGallery";
 import { useState } from "react";
 import { PlanType } from "@/app/shared/types/plan";
+import { MyPlanType } from "@/app/shared/types/myPlanType";
 
 interface Props {
-  data: PlanType[] | undefined;
+  data: PlanType[];
+  myPlan: MyPlanType[];
 }
-export const TariffsContent = ({ data }: Props) => {
+export const TariffsContent = ({ data, myPlan }: Props) => {
   const [stateSwitch, setStateSwitch] = useState(false);
 
   if (!data?.length) {
     return <p>Loading...</p>;
   }
+
+  const sort = data.sort(
+    (accumulator, currentValue) => accumulator.id - currentValue.id
+  );
   return (
     <>
       <SwitcherPrise
@@ -25,8 +31,9 @@ export const TariffsContent = ({ data }: Props) => {
 
       <div className={styles.forDesktop}>
         {/* for Desktop */}
-        {data.map((x) => (
+        {sort.map((x) => (
           <TariffCardLayout
+            myPlan={myPlan[0]}
             key={x.id}
             tariffItem={x}
             stateSwitch={stateSwitch}
@@ -36,7 +43,7 @@ export const TariffsContent = ({ data }: Props) => {
 
       <div className={styles.forMobile}>
         {/* for Mobile */}
-        <TariffGallery stateSwitch={stateSwitch} data={data} />
+        <TariffGallery stateSwitch={stateSwitch} data={sort} myPlan={myPlan} />
       </div>
     </>
   );

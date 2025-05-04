@@ -12,14 +12,14 @@ export const SwitcherPrise = ({ stateSwitch, setStateSwitch }: Props) => {
     <div
       className={cn(
         styles.plan,
-        stateSwitch ? styles.stateSwitchOn : styles.stateSwitchOff
+        stateSwitch ? styles.stateSwitchOff : styles.stateSwitchOn
       )}
     >
-      <div onClick={() => setStateSwitch(true)} className={styles.mount}>
+      <div onClick={() => setStateSwitch(false)} className={styles.mount}>
         Місяць
       </div>
 
-      <div onClick={() => setStateSwitch(false)} className={styles.discount}>
+      <div onClick={() => setStateSwitch(true)} className={styles.discount}>
         <p className={styles.year}>Рік</p>
         <p className={styles.sum}>до -60%</p>
       </div>

@@ -13,6 +13,7 @@ import Tariffs from "./tariffs.svg?svgr";
 import Basket from "./basket.svg?svgr";
 import Close from "./close.svg?svgr";
 import ArrowNavigation from "./arrow_navigation.svg?svgr";
+import LoaderIcon from "./loader.svg?svgr";
 
 import LogoIcons from "@/images/logo.svg?url";
 
@@ -33,4 +34,5 @@ export {
   Basket,
   Close,
   ArrowNavigation,
+  LoaderIcon,
 };

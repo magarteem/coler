@@ -5,6 +5,12 @@
 }
 
 .container {
+  .loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+  }
   .inputClass {
     position: relative;
     color: var(--black);

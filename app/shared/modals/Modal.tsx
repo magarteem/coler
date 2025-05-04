@@ -49,10 +49,9 @@ export function Modal() {
 
         {modal.data && (
           <>
-            {modal.modalId === "writeToSupport" && (
-              <WriteToSupportModal data={modal.data} />
-            )}
-            {modal.modalId === "promoCode" && (
+            {modal.modalId === "writeToSupport" && <WriteToSupportModal />}
+
+            {modal.modalId === "promoCodeModal" && (
               <PromoCodeModal data={modal.data} />
             )}
             {modal.modalId === "actionModal" && (

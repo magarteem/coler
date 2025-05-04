@@ -1,4 +1,14 @@
-type PlanName = "Initial" | "Extended" | "Base" | "Advanced";
+export type PlanName = "Initial" | "Extended" | "Base" | "Advanced";
+
+export type PlanOptionsBase =
+  | "fraud protection"
+  | "anti-boring protection"
+  | "ad protection"
+  | "potentially dangerous numbers marking"
+  | "number complaints"
+  | "active fraud prevention during a call";
+
+export type PlanOptionsAdditional = "phone theft protection";
 
 export interface PlanType {
   id: number;
@@ -10,7 +20,7 @@ export interface PlanType {
   costOfCompensation: number;
   costOfCompensationOptions: number;
   planOptions: {
-    base: string[];
-    additional: string[];
+    base: PlanOptionsBase[];
+    additional: PlanOptionsAdditional[];
   };
 }

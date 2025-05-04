@@ -1,5 +1,5 @@
 import React from "react";
-import { Controller } from "react-hook-form";
+import { Controller, FieldError } from "react-hook-form";
 import { PhoneInputField } from "../../ui/input/PhoneInputField";
 
 interface PhoneInputProps {
@@ -15,8 +15,8 @@ export const PhoneInput = ({ form, name }: PhoneInputProps) => {
       render={({ field: { value, ...field }, formState: { errors } }) => {
         return (
           <PhoneInputField
-            isValid={true}
-            errorText={errors[name]?.message}
+            errorText={(errors[name] as FieldError)?.message}
+            value={value}
             {...field}
           />
         );

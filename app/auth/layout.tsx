@@ -2,8 +2,8 @@ import { getServerSession } from "next-auth";
 import { AuthLayout } from "../shared/layouts/authLayout/AuthLayout";
 import { BlockColorLayout } from "../shared/layouts/blockColorLayout/BlockColorLayout";
 import styles from "./auth.module.scss";
-import { authOptions } from "../api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
+import { authOptions } from "../api/auth/authOptions";
 
 type Props = {
   children: React.ReactNode;

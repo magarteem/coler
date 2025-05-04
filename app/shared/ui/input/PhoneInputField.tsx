@@ -1,30 +1,30 @@
-"use client";
-
-import { ReactNode, useState } from "react";
 import cn from "classnames";
-import { ErrorIcon } from "@/public/images";
-import PhoneInput, { PhoneInputProps } from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
 import styles from "./phoneInputField.module.scss";
+import { InputMask } from "@react-input/mask";
+import { useEffect, useState } from "react";
+import { LoaderIcon } from "@/public/images";
 
 type Props = {
   titleText?: string;
   containerClassName?: string;
-  errorText?: any;
-  valueInput?: string;
+  errorText?: string;
+  value: string;
   children?: React.ReactNode;
-} & PhoneInputProps;
+};
 
 export const PhoneInputField = ({
   titleText,
   children,
   errorText,
+  value,
   containerClassName,
-  valueInput,
   ...props
 }: Props) => {
-  const [showCode, setShowCode] = useState(false);
-  //const [valueInput, setValueInput] = useState("");
+  const [setLoad, setOnLoad] = useState(true);
+
+  useEffect(() => {
+    setOnLoad(false);
+  }, []);
 
   return (
     <div
@@ -32,29 +32,21 @@ export const PhoneInputField = ({
         [styles.errorText]: !!errorText,
       })}
     >
-      <PhoneInput
-        country={"ua"} // Устанавливаем Украину по умолчанию
-        value={showCode ? `+380` + props.value : ""}
-        //onChange={(value) => setValueInput(value)}
-        onlyCountries={["ua"]}
-        disableDropdown={true}
-        disableCountryCode={showCode ? false : true}
-        onFocus={() => {
-          setShowCode(true);
-        }}
-        onBlur={() => {
-          !valueInput && setShowCode(false);
-        }}
-        isValid={(e) => {
-          console.log("e", e);
-          return e;
-        }}
-        autoFormat
-        placeholder="+380 (000) 000 00 00"
-        inputClass={styles.inputClass}
-        buttonStyle={{ display: "none" }} // Убираем флаг
-        {...props}
-      />
+      {setLoad ? (
+        <div className={styles.loader}>
+          <LoaderIcon height={40} width={40} />
+        </div>
+      ) : (
+        <InputMask
+          mask="+380 (__) ___ __ __"
+          replacement={{ _: /\d/ }}
+          className={styles.inputClass}
+          placeholder="+380 (00) 000 00 00"
+          value={value}
+          {...props}
+        />
+      )}
+
       {children}
       {!!errorText && <span className={styles.error}>{errorText}</span>}
     </div>

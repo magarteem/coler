@@ -12,5 +12,6 @@ interface ActiveSubscriptionsType {
 export interface UserType {
   acessToken: string;
   refreshToken: string;
+  phone: number;
   activeSubscriptions: ActiveSubscriptionsType[] | [];
 }

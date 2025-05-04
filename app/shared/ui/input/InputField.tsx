@@ -6,7 +6,7 @@ import { ErrorIcon } from "@/public/images";
 type Props = {
   titleText?: string;
   containerClassName?: string;
-  errorText?: any;
+  errorText?: string;
   icon?: ReactNode;
   children?: React.ReactNode;
 } & React.HTMLProps<HTMLInputElement>;

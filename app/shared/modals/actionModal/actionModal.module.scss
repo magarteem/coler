@@ -2,4 +2,8 @@
   display: flex;
   flex-direction: column;
   row-gap: 24px;
+
+  .text {
+    color: var(--black);
+  }
 }

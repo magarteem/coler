@@ -1,40 +1,49 @@
-import styles from "./tariffCardLayout.module.scss";
 import cn from "classnames";
+import styles from "./tariffCardLayout.module.scss";
 import { Check } from "@/public/images";
 import { ByButton } from "@/app/features/byButton/ByButton";
-import { Plan } from "../../types/plan";
+import { PlanType } from "../../types/plan";
+import { planLibraryName } from "../../helpers/planLibraryName";
+import { MyPlanType } from "../../types/myPlanType";
+import {
+  libPlanOptions,
+  libPlanOptionsAdditional,
+} from "../../helpers/libPlanOptions";
 
 type Props = {
-  tariffItem: Plan;
+  tariffItem: PlanType;
   stateSwitch: boolean;
+  myPlan: MyPlanType | undefined;
 };
 
-const lib = {
-  Initial: "Початковий",
-  Extended: "Розширений",
-  Base: "Базовий",
-  Advanced: "Просунутий",
-};
-export const TariffCardLayout = ({ tariffItem, stateSwitch }: Props) => {
-  const myPlan = tariffItem.title === "Base";
+export const TariffCardLayout = ({
+  tariffItem,
+  stateSwitch,
+  myPlan,
+}: Props) => {
+  const thisMyPlan = myPlan ? tariffItem.id === myPlan?.planId : undefined;
 
   return (
     <div
       className={cn(styles.tariffCardLayout, {
-        [styles.bkgTariff]: tariffItem.title === "Base",
+        [styles.bkgTariff]: tariffItem.title === "Advanced",
       })}
     >
       <div className={styles.tariffName}>
-        <h2 className={styles.tariffNameText}>{lib[tariffItem.title]}</h2>
-        {!stateSwitch && <span className={styles.discount}>-60%</span>}
+        <h2 className={styles.tariffNameText}>
+          {planLibraryName[tariffItem.title]}
+        </h2>
+        {stateSwitch && <span className={styles.discount}>-60%</span>}
       </div>
 
       <div className={styles.price}>
         <span className={styles.sum}>
           {stateSwitch ? tariffItem.annualCost : tariffItem.baseCost}
         </span>
-        <span className={styles.tearText}>грн/міс</span>
-        {!stateSwitch && (
+        <span className={styles.tearText}>
+          {stateSwitch ? "грн/рік" : "грн/міс"}
+        </span>
+        {stateSwitch && (
           <p className={styles.benefit}>
             <s>{tariffItem.annualCost} грн/рік</s>
             <span>{tariffItem.annualCostPromo} грн/рік</span>
@@ -53,7 +62,7 @@ export const TariffCardLayout = ({ tariffItem, stateSwitch }: Props) => {
               <div className={styles.icon}>
                 <Check width={16} height={16} />
               </div>
-              <p>{x}</p>
+              <p>{libPlanOptions[x]}</p>
             </div>
           ))}
         </div>
@@ -70,7 +79,7 @@ export const TariffCardLayout = ({ tariffItem, stateSwitch }: Props) => {
         <div className={styles.phoneProtection}>
           <Check width={16} height={16} />
           {tariffItem.planOptions.additional.map((x) => (
-            <p key={x}>{x}</p>
+            <p key={x}>{libPlanOptionsAdditional[x]}</p>
           ))}
         </div>
       )}
@@ -84,7 +93,11 @@ export const TariffCardLayout = ({ tariffItem, stateSwitch }: Props) => {
         </div>
       )}
 
-      <ByButton myPlan={myPlan} />
+      <ByButton
+        myPlan={thisMyPlan}
+        tariffItem={tariffItem}
+        stateSwitch={stateSwitch}
+      />
     </div>
   );
 };

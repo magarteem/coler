@@ -1,23 +1,22 @@
-.positionContent {
-  width: 548px;
-  display: inline-flex;
-  flex-direction: column;
-  row-gap: 24px;
+.tariffEnableTitle {
+  margin-bottom: 4px;
+}
 
-  @media (max-width: $lgm) {
-    width: 100%;
-  }
-
-  .tariffEnableTitle {
-    margin-bottom: 4px;
-  }
+.gridPositionOneColumn {
+  display: grid;
+  row-gap: 12px;
+  column-gap: 16px;
 }
 
 .gridPosition {
-  display: grid;
+  @extend .gridPositionOneColumn;
   grid-template-columns: repeat(2, 1fr);
+}
+
+.flexGap {
+  display: flex;
+  flex-direction: column;
   row-gap: 12px;
-  column-gap: 16px;
 }
 
 .title {
@@ -32,8 +31,4 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
-}
-
-.otherColorBlock {
-  background-color: var(--mainLight);
 }

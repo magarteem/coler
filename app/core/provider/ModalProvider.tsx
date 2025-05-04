@@ -1,18 +1,22 @@
 "use client";
 
+import { PlanType } from "@/app/shared/types/plan";
 import React, { createContext, useState, useContext, ReactNode } from "react";
 
 export type ModalIdType =
   | "writeToSupport"
-  | "promoCode"
+  | "promoCodeModal"
   | "actionModal"
   | "orderModal";
 
 export interface PropsModalData {
+  success?: boolean;
+  stateSwitch?: boolean;
   modalTitle?: string;
   iconModalTitle?: React.ReactNode;
   size?: "sm" | "md" | "auto";
   classNames?: string;
+  plan?: PlanType;
   //buttonAction: {
   //  name: string;
   //  fu: () => void;

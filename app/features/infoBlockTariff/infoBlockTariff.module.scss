@@ -7,6 +7,7 @@
     line-height: 16px;
 
     .itemText {
+      margin-top: 4px;
       display: block;
     }
   }
@@ -25,6 +26,7 @@
 
 .gridShow {
   display: grid;
+  width: 100%;
   max-height: 900px;
   transition: all 0.4s;
 }
@@ -43,6 +45,11 @@
     font-weight: 600;
     line-height: 16px;
   }
+}
+
+.gridPositionOneColum {
+  @extend .gridPosition;
+  grid-template-columns: 1fr;
 }
 
 .line {

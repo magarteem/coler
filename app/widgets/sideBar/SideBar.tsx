@@ -1,6 +1,5 @@
 "use client";
 
-import cn from "classnames";
 import { Logo } from "@/app/shared/ui/link/logo/Logo";
 import { NavigationBlock } from "./navigationBlock/NavigationLink";
 import styles from "./sideBar.module.scss";

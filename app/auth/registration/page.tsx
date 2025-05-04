@@ -7,18 +7,32 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PhoneInput } from "@/app/shared/components/formFields/PhoneInput";
 import { useState } from "react";
-import { InputField } from "@/app/shared/ui/input/InputField";
 import { GoBack } from "@/app/features/goBack/GoBack";
 import { Button } from "@/app/shared/ui/button/Button";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { authLogin } from "@/app/shared/api/authLogin";
 import { TextInputField } from "@/app/shared/components/formFields/TextInputField";
+import { generatePattern, unformat } from "@react-input/mask";
 
 const url = process.env.NEXT_PUBLIC_BASE_URL;
 
+const options = {
+  mask: "+380 (00) 000 00 00",
+  replacement: { 0: /\d/ },
+};
+
 const createDirectoryZod = z.object({
-  phone: z.string().length(12, "Invalid phone number"),
+  phone: z.string().refine(
+    (val) => {
+      const pattern = generatePattern("full-inexact", options);
+      const isValid = RegExp(pattern).test(val);
+      return isValid;
+    },
+    {
+      message: "Invalid phone number",
+    }
+  ),
   codeVerify: z.string().max(4, "max char").optional(),
 });
 export type ValidationSchema = z.infer<typeof createDirectoryZod>;
@@ -50,8 +64,9 @@ export default function Registration() {
     try {
       if (!accessToken) {
         //REG
-        const isLogin = await authLogin("/register", {
-          body: JSON.stringify({ phone: dataForm.phone }),
+        const unformatMask = "380" + unformat(dataForm.phone, options);
+        const isLogin = await authLogin("/auth/register", {
+          body: JSON.stringify({ phone: unformatMask }),
         });
 
         if (isLogin.error) {

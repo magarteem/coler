@@ -8,13 +8,15 @@ import cn from "classnames";
 import { useCallback, useRef, useState } from "react";
 import { ArrowNavigation } from "@/public/images";
 import { PlanType } from "@/app/shared/types/plan";
+import { MyPlanType } from "@/app/shared/types/myPlanType";
 
 interface Props {
   stateSwitch: boolean;
   data: PlanType[];
+  myPlan: MyPlanType[];
 }
 
-export const TariffGallery = ({ stateSwitch, data }: Props) => {
+export const TariffGallery = ({ stateSwitch, data, myPlan }: Props) => {
   const swiperRef = useRef<SwiperClass | null>(null);
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
@@ -87,7 +89,11 @@ export const TariffGallery = ({ stateSwitch, data }: Props) => {
       >
         {data.map((x) => (
           <SwiperSlide key={x.id} className={styles.customContainer}>
-            <TariffCardLayout tariffItem={x} stateSwitch={stateSwitch} />
+            <TariffCardLayout
+              tariffItem={x}
+              stateSwitch={stateSwitch}
+              myPlan={myPlan[0]}
+            />
           </SwiperSlide>
         ))}
       </Swiper>

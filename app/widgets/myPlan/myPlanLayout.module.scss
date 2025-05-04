@@ -1,0 +1,14 @@
+.positionContent {
+  width: 548px;
+  display: inline-flex;
+  flex-direction: column;
+  row-gap: 24px;
+
+  @media (max-width: $lgm) {
+    width: 100%;
+  }
+}
+
+.otherColorBlock {
+  background-color: var(--mainLight) !important;
+}

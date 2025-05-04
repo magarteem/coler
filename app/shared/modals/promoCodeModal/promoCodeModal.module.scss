@@ -1,11 +1,18 @@
 .promoCodeModal {
+  position: relative;
   display: flex;
   flex-direction: column;
   row-gap: 24px;
 
+  .iconLoading {
+    position: absolute;
+    right: 0;
+    top: -20px;
+  }
+
   .iconSuccess {
     path {
-      stroke: #4dcfc0;
+      stroke: #40ed0c;
     }
   }
 

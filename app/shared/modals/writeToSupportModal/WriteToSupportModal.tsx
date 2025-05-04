@@ -1,25 +1,67 @@
-import { PropsModalData, useModal } from "@/app/core/provider/ModalProvider";
+"use client";
+
+import { useModal } from "@/app/core/provider/ModalProvider";
 import styles from "./writeToSupportModal.module.scss";
-import { TextArea } from "../../ui/textArea/TextArea";
 import { Button } from "../../ui/button/Button";
-import { InputField } from "../../ui/input/InputField";
+import { writeToSupport } from "../../api/writeToSupport";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { TextInputField } from "./formFields/TextInputField";
+import { TextAreaInputField } from "./formFields/TextAreaInputField";
 
-export const WriteToSupportModal = ({ data }: { data: PropsModalData }) => {
+const schemePhoneZod = z.object({
+  email: z.string().email(),
+  text: z.string().min(3, "minimum number of characters 3"),
+});
+
+export type ValidationSchema = z.infer<typeof schemePhoneZod>;
+
+export const WriteToSupportModal = () => {
   const { closeModal } = useModal();
-  const click = () => closeModal();
 
+  const form = useForm<ValidationSchema>({
+    defaultValues: {
+      email: "",
+      text: "",
+    },
+    mode: "onBlur",
+    resolver: zodResolver(schemePhoneZod),
+  });
+
+  const onSubmit = async (formData: ValidationSchema) => {
+    await writeToSupport({
+      email: formData.email,
+      text: formData.text,
+    })
+      .then((res) => console.log("res", res))
+      .catch((ERROR) => console.log("ERRRRRRRRRRR", ERROR));
+
+    closeModal();
+  };
+
+  console.log("form.formState", form.formState.errors);
   return (
-    <form action={click} className={styles.writeToSupportModal}>
-      <InputField
+    <form
+      onSubmit={form.handleSubmit(onSubmit)}
+      className={styles.writeToSupportModal}
+    >
+      <TextInputField
+        name="email"
+        form={form}
         titleText="Пошта для зворотнього звʼязку"
         placeholder="example@email.com"
       />
-      <TextArea
+
+      <TextAreaInputField
+        form={form}
+        name="text"
         titleText="Повідомлення"
         placeholder="Напишіть ваше повідомлення"
       />
 
       <Button
+        disabled={!form.formState.isValid}
         size="lg"
         variant="primary"
         classNameContainer={styles.btn}
